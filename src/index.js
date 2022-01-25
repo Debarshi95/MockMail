@@ -4,15 +4,18 @@ import { Provider } from 'react-redux';
 import { createStore } from './store/createStore';
 import App from './containers/App';
 import reportWebVitals from './reportWebVitals';
+import ErrorBoundary from './components/ErrorBoundary';
 import './styles/tailwind.css';
 import './index.css';
 
 const store = createStore();
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
 );
