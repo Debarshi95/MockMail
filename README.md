@@ -27,13 +27,27 @@ A simple web for mails
 
 #### Desktop
 
-![Desktop-1](screenshots/default.png)
+![Desktop-1](screenshots/mockmail-desktop1.png)
 
-![Desktop-2](screenshots/calendar.png)
+![Desktop-2](screenshots/mockmail-desktop2.png)
 
-![Desktop-3](screenshots/reorder.png)
+![Desktop-3](screenshots/mockmail-desktop3.png)
 
-![Desktop-4](screenshots/all.png)
+![Desktop-4](screenshots/mockmail-desktop4.png)
+
+#### Mobile
+
+<div align="center">
+
+![Mobile-1](screenshots/mockmail_mobile1.png)
+
+![Mobile-2](screenshots/mockmail_mobile2.png)
+
+![Mobile-3](screenshots/mockmail_mobile3.png)
+
+![Mobile-4](screenshots/mockmail_mobile4.png)
+
+</div>
 
 <br/>
 
