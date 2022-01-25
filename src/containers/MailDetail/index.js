@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import MailCard from '../../components/MailCard';
 import { selectMailById } from '../../store/selectors/mailsSelector';
@@ -12,6 +12,10 @@ const MailDetail = ({ match }) => {
       <MailCard mail={mail} />
     </div>
   );
+};
+
+MailDetail.propTypes = {
+  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default MailDetail;
