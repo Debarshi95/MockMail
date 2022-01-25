@@ -1,18 +1,21 @@
 import React, { Suspense, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import Navbar from '../../components/Navbar';
 import { fetchMails } from '../../store/slices/mailSlice';
 import { loadable } from '../../utils/loadable';
+import Navbar from '../../components/Navbar';
+import Loader from '../../components/Loader';
 import routes from '../../utils/routes';
 
-const TaggedMail = loadable(() => import('../TaggedMail'));
 const Home = loadable(() => import('../Home'));
 const MailDetail = loadable(() => import('../MailDetail'));
+const Search = loadable(() => import('../Search'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const pathArr = Object.keys(routes).map((key) => routes[key].path);
+  const tagPathNames = Object.keys(routes).map((key) => routes[key].path);
+  const pathnames = ['/', ...tagPathNames];
 
   useEffect(() => {
     dispatch(fetchMails());
@@ -22,10 +25,20 @@ const App = () => {
     <div className="font-poppins">
       <BrowserRouter>
         <Navbar />
-        <Suspense fallback={<h2>Loading...</h2>}>
+        <Suspense fallback={<Loader />}>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path={pathArr} exact component={TaggedMail} />
+            <Route
+              path={[...pathnames]}
+              exact
+              render={(props) => {
+                const { search } = props.location;
+                if (search) {
+                  return <Search {...props} />;
+                }
+                return <Home {...props} />;
+              }}
+            />
+
             <Route path="/mail/:id" component={MailDetail} />
           </Switch>
         </Suspense>
@@ -34,4 +47,7 @@ const App = () => {
   );
 };
 
+App.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};
 export default App;
